@@ -43,13 +43,28 @@ headers = {
 
 POST_PIXEL_ENDPOINT = GRAPH_ENDPOINT + f"/{GRAPH_ID}"
 
-today = dt.datetime.now()
+# today = dt.datetime.now()
+today = dt.datetime(2025, 11, 25)
 
 
 post_pixel_config = {
     "date": today.strftime("%Y%m%d"),
-    "quantity": "4.5"
+    "quantity": "44.5"
 }
 
-response = requests.post(url=POST_PIXEL_ENDPOINT, json=post_pixel_config, headers=headers)
+# response = requests.post(url=POST_PIXEL_ENDPOINT, json=post_pixel_config, headers=headers)
+# print(response.text)
+
+UPDATE_ENDPOINT = POST_PIXEL_ENDPOINT + f"/{today.strftime('%Y%m%d')}"
+
+new_pixel_data = {
+    "quantity": "23.4",
+}
+
+# response = requests.put(UPDATE_ENDPOINT, json=new_pixel_data, headers=headers)
+# print(response.text)
+
+DELETE_ENDPOINT = UPDATE_ENDPOINT
+
+response = requests.delete(DELETE_ENDPOINT, headers=headers)
 print(response.text)
